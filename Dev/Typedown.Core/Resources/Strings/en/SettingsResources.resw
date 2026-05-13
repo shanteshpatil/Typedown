@@ -681,4 +681,28 @@
     <value>Window</value>
     <comment>视图/窗口</comment>
   </data>
+  <data name="View.AppTheme.Sepia" xml:space="preserve">
+    <value>Sepia</value>
+    <comment>视图/棕褐色</comment>
+  </data>
+  <data name="View.AppTheme.Forest" xml:space="preserve">
+    <value>Forest</value>
+    <comment>视图/森林</comment>
+  </data>
+  <data name="View.AppTheme.Ocean" xml:space="preserve">
+    <value>Ocean</value>
+    <comment>视图/海洋</comment>
+  </data>
+  <data name="View.AppTheme.Midnight" xml:space="preserve">
+    <value>Midnight</value>
+    <comment>视图/午夜</comment>
+  </data>
+  <data name="Editor.Font.Title" xml:space="preserve">
+    <value>Editor font</value>
+    <comment>编辑器字体</comment>
+  </data>
+  <data name="Editor.Font.Description" xml:space="preserve">
+    <value>Choose the font used in the editor</value>
+    <comment>选择编辑器字体</comment>
+  </data>
 </root>

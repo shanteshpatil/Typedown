@@ -79,10 +79,13 @@ namespace Typedown.Core.ViewModels
             {
                 try
                 {
-                    if (SettingsViewModel.AppTheme == Enums.AppTheme.Default)
+                    var appTheme = SettingsViewModel.AppTheme;
+                    if (appTheme == Enums.AppTheme.Default)
                         ActualTheme = Application.Current.RequestedTheme == ApplicationTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
+                    else if (appTheme == Enums.AppTheme.Dark || appTheme == Enums.AppTheme.Midnight)
+                        ActualTheme = ElementTheme.Dark;
                     else
-                        ActualTheme = SettingsViewModel.AppTheme == Enums.AppTheme.Light ? ElementTheme.Light : ElementTheme.Dark;
+                        ActualTheme = ElementTheme.Light;
                 }
                 catch
                 {

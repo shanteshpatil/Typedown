@@ -15,6 +15,18 @@ namespace Typedown.Core.Enums
 
         [Locale("View.AppTheme.Dark")]
         Dark = 2,
+
+        [Locale("View.AppTheme.Sepia")]
+        Sepia = 3,
+
+        [Locale("View.AppTheme.Forest")]
+        Forest = 4,
+
+        [Locale("View.AppTheme.Ocean")]
+        Ocean = 5,
+
+        [Locale("View.AppTheme.Midnight")]
+        Midnight = 6,
     }
 
     public static partial class Enumerable

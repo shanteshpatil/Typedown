@@ -27,11 +27,40 @@ namespace Typedown.Utilities
         {
             var ui = provider.GetService<UIViewModel>();
             var settings = provider.GetService<SettingsViewModel>();
-            var isDarkMode = ui.ActualTheme == ElementTheme.Dark;
+            var appTheme = settings.AppTheme;
+
+            // Determine the theme name string sent to JS
+            string themeName;
+            bool isDarkMode;
+            switch (appTheme)
+            {
+                case Enums.AppTheme.Sepia:
+                    themeName = "Sepia";
+                    isDarkMode = false;
+                    break;
+                case Enums.AppTheme.Forest:
+                    themeName = "Forest";
+                    isDarkMode = false;
+                    break;
+                case Enums.AppTheme.Ocean:
+                    themeName = "Ocean";
+                    isDarkMode = false;
+                    break;
+                case Enums.AppTheme.Midnight:
+                    themeName = "Midnight";
+                    isDarkMode = true;
+                    break;
+                default:
+                    isDarkMode = ui.ActualTheme == ElementTheme.Dark;
+                    themeName = isDarkMode ? "Dark" : "Light";
+                    break;
+            }
+
             var accentColor = new UISettings().GetColorValue(UIColorType.Accent);
             var solidBackground = isDarkMode ? Color.FromArgb(0xFF, 0x28, 0x28, 0x28) : Color.FromArgb(0xFF, 0xF9, 0xF9, 0xF9);
             var background = settings.UseMicaEffect && settings.UseEditorMicaEffect ? Colors.Transparent : solidBackground;
-            return new { theme = isDarkMode ? "Dark" : "Light", accentColor, background };
+            var editorFont = settings.EditorFont ?? "Mulish";
+            return new { theme = themeName, accentColor, background, editorFont };
         }
 
         public static bool GetUseLightTheme()

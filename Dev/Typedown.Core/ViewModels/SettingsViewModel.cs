@@ -40,6 +40,7 @@ namespace Typedown.Core.ViewModels
         public string EditorAreaWidth { get => GetSettingValue("1200px"); set => SetSettingValue(value); }
         public bool AutoSave { get => GetSettingValue(false); set => SetSettingValue(value); }
         public AppTheme AppTheme { get => GetSettingValue(AppTheme.Default); set => SetSettingValue(value); }
+        public string EditorFont { get => GetSettingValue("Mulish"); set => SetSettingValue(value); }
         public string Language { get => GetSettingValue("default"); set => SetSettingValue(value); }
         public int WordCountMethod { get => GetSettingValue(0); set => SetSettingValue(value); }
         public int TabSize { get => GetSettingValue(4); set => SetSettingValue(value); }

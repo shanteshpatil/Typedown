@@ -1,0 +1,29 @@
+:root {
+  color: #cdd6f4;
+  --highlightColor: rgba(137, 180, 250, .4);
+  --selectionColor: rgba(137, 180, 250, .2);
+  --editorColor: rgb(205, 214, 244);
+  --editorColor80: rgba(205, 214, 244, .8);
+  --editorColor60: rgba(205, 214, 244, .6);
+  --editorColor50: rgba(205, 214, 244, .5);
+  --editorColor40: rgba(205, 214, 244, .4);
+  --editorColor30: rgba(205, 214, 244, .3);
+  --editorColor10: rgba(205, 214, 244, .1);
+  --editorColor04: rgba(205, 214, 244, .04);
+  --editorBgColor: #1e1e2e;
+  --deleteColor: #f38ba8;
+  --iconColor: rgba(166, 173, 200, .7);
+  --codeBgColor: #181825B3;
+  --codeBlockBgColor: #181825B3;
+  --footnoteBgColor: rgba(49, 50, 68, .5);
+  --inputBgColor: #313244;
+  --focusColor: var(--themeColor);
+  --tableBorderColor: #45475a;
+  --itemBgColor: #313244;
+  --floatBgColor: #313244;
+  --floatHoverColor: rgba(255, 255, 255, .06);
+  --floatBorderColor: rgba(255, 255, 255, .08);
+  --maskColor: rgba(0, 0, 0, .7);
+  --editorAreaWidth: 750px;
+  --floatShadow: 0 8px 12px 0 rgba(0, 0, 0, .3);
+}
