@@ -1,0 +1,79 @@
+name: Build Windows Setup
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-editor:
+    name: Build JS Editor
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install and build Typedown.Editor
+        working-directory: Dev/Typedown.Editor
+        run: |
+          npm install -g yarn
+          yarn
+          yarn build
+
+      - name: Upload editor statics
+        uses: actions/upload-artifact@v4
+        with:
+          name: editor-statics
+          path: Dev/Typedown/Resources/Statics/
+
+  build-package:
+    name: Build MSIX Package
+    runs-on: windows-latest
+    needs: build-editor
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download editor statics
+        uses: actions/download-artifact@v4
+        with:
+          name: editor-statics
+          path: Dev/Typedown/Resources/Statics/
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+      - name: Restore NuGet packages
+        run: nuget restore Typedown.sln
+
+      - name: Build MSIX (x64 Release)
+        run: |
+          msbuild Tools/Typedown.Package/Typedown.Package.wapproj `
+            /p:Configuration=Release `
+            /p:Platform=x64 `
+            /p:AppxBundle=Never `
+            /p:AppxPackageSigningEnabled=True `
+            /p:GenerateTemporaryStoreCertificate=True `
+            /p:UapAppxPackageBuildMode=SideloadOnly `
+            /p:AppxPackageDir="${{ github.workspace }}\AppxPackages\" `
+            /m
+
+      - name: Upload MSIX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Typedown-MSIX-x64
+          path: AppxPackages/**/*.msix
+          if-no-files-found: warn
+
+      - name: Upload MSIXBUNDLE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Typedown-MSIXBUNDLE-x64
+          path: AppxPackages/**/*.msixbundle
+          if-no-files-found: warn
