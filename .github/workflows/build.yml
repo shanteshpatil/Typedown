@@ -52,6 +52,9 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Typedown.sln
 
+      - name: Restore .NET SDK packages
+        run: dotnet restore Dev/Typedown/Typedown.csproj -r win10-x64
+
       - name: Build MSIX (x64 Release)
         run: |
           msbuild Tools/Typedown.Package/Typedown.Package.wapproj `
